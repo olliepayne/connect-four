@@ -6,12 +6,13 @@
 ### Visual / Style
 - 7x6 CSS grid for the game 'pieces'
   - corresponding virtual grid to hold the values
-- White and black default, player can choose themes ?
+- Classic connect 4 colors
 - dabble with animations *when playable build exists*
 - display stats for each player
   - who's turn it is
   - how many pieces they have on the board
   - current score for the session
+- **BONUS** different themes can be set
 ### Mechanics / Behavior
 - Two players, no computer AI
 - receive input from a mouse click as to which column to drop the piece in
@@ -23,8 +24,10 @@
 - player class (object)
   - refined way of handling two players
 - game object
+  - should handle the general interactions of the overall game state
 - turn handler object
-## Gameplay
+  - specific to controlling who gets to play and when 
+### Gameplay
 1. player's input their respective names
 2. a number is rolled to see who goes first
 3. play back and forth until an end game condition is met

@@ -7,7 +7,7 @@ body {
                       "footer footer footer";
 }
 
-h1 {
+header {
   grid-area: header;
   display: flex;
   justify-content: center;
@@ -15,14 +15,10 @@ h1 {
 
 #game-board {
   grid-area: game;
-  background-color: blue;
   display: grid;
   grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
   grid-template-rows: 17% 17% 17% 17% 17% 17%;
-}
-
-#game-board-image {
-  size: 100%;
+  background-color: blue;
 }
 
 #button-container {
