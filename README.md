@@ -20,6 +20,13 @@
 - tie condition
   - grids full, nobody one
 - timer? for 'falling' animation/effect
-- player objects (1 and 2)
+- player class (object)
+  - refined way of handling two players
 - game object
 - turn handler object
+## Gameplay
+1. player's input their respective names
+2. a number is rolled to see who goes first
+3. play back and forth until an end game condition is met
+   1. whether that be a win or a tie
+4. when the end game condition is met, stop gameplay and the ability to play and display who won. Then, update the respective stats.
