@@ -1,0 +1,20 @@
+body {
+  display: grid;
+  grid-template-columns: 200px auto 200px;
+  grid-template-rows: 60px auto;
+  grid-template-areas: "hd hd hd"
+                      "sidebar-left game sidebar-right"
+                      "footer footer footer";
+}
+
+header {
+  grid-area: hd;
+}
+
+#game-board {
+  grid-area: game;
+}
+
+#button-container {
+  grid-area: footer;
+}
