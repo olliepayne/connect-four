@@ -21,3 +21,5 @@
   - grids full, nobody one
 - timer? for 'falling' animation/effect
 - player objects (1 and 2)
+- game object
+- turn handler object
