@@ -22,6 +22,10 @@ header {
   background-color: pink;
 }
 
+.cell {
+  border-radius: 50%;
+}
+
 #button-container {
   grid-area: footer;
   display: flex;
