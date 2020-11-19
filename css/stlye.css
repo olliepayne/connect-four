@@ -1,10 +1,11 @@
 body {
   display: grid;
-  grid-template-columns: 200px auto 200px;
-  grid-template-rows: 60px auto 60px;
+  grid-template-columns: auto 700px auto;
+  grid-template-rows: auto 600px auto;
   grid-template-areas: "header header header"
                       "sidebar-left game sidebar-right"
                       "footer footer footer";
+  height: 100vh;
 }
 
 header {
@@ -16,9 +17,9 @@ header {
 #game-board {
   grid-area: game;
   display: grid;
-  grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
-  grid-template-rows: 17% 17% 17% 17% 17% 17%;
-  background-color: blue;
+  grid-template-columns: 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% 14.3%;
+  grid-template-rows: 16.7% 16.7% 16.7% 16.7% 16.7% 16.7%;
+  background-color: pink;
 }
 
 #button-container {

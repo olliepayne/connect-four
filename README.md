@@ -27,6 +27,7 @@
   - should handle the general interactions of the overall game state
 - turn handler object
   - specific to controlling who gets to play and when 
+- only be able to drop a piece into a cell if there is a piece below it (or nothing at all)
 ### Gameplay
 1. player's input their respective names
 2. a number is rolled to see who goes first
