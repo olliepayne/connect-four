@@ -12,9 +12,13 @@ const board = {
       const newCellEl = document.createElement('div');
       newCellEl.className = 'cell';
       newCellEl.id = `cell-${i}`;
+
       newCellEl.style.backgroundColor = 'white';
+
       newCellEl.addEventListener('click', (e) => this.clickCell(e.target));
+
       this.gameBoardEl.appendChild(newCellEl);
+
       this.cellEls.push(newCellEl);
     }
   },
@@ -28,9 +32,11 @@ const board = {
         if(game.turn === 1) {
           colorToFill = player1.color;
           game.turn = 2;
+          game.renderGameMessage(`${player2.color}'s turn`);
         } else if(game.turn === 2) {
           colorToFill = player2.color;
           game.turn = 1;
+          game.renderGameMessage(`${player1.color}'s turn`);
         }
 
         this.fillCell(i, colorToFill);
@@ -45,7 +51,7 @@ const board = {
   checkNeighbors: function(color) {
     for(let i = 0; i < this.cellsX * this.cellsY; i++) {
       if(this.grid[i] === color) {
-        let winIterator = 1; // declare win iterator
+        let winIterator = 1; // declare win iterator (need = 4 to win -- 4 pieces in any direction)
 
         // horiz logic
         for(let h = 0; h < 3; h++) {
@@ -54,7 +60,7 @@ const board = {
           }
 
           if(winIterator === 4) {
-            game.endGame();
+            game.endGame(color);
             return;
           }
         }
@@ -67,49 +73,54 @@ const board = {
           }
 
           if(winIterator === 4) {
-            game.endGame();
+            game.endGame(color);
             return;
           }
         }
 
         // diagonal negative logic
-        winIterator = 1;
+        winIterator = 1;  // reset for next logic
         for(let h = 0; h < 3; h++) {
           if(this.grid[i + (h + 1) + this.cellsX * (h + 1)] === color) {
             winIterator++;
           }
 
           if(winIterator === 4) {
-            game.endGame();
+            game.endGame(color);
             return;
           }
         }
 
         // diagonal positive logic
-        winIterator = 1;
+        winIterator = 1;  // reset for next logic
         for(let h = 0; h < 3; h++) {
           if(this.grid[i + (this.cellsX * (h + 1)) - (h + 1)] === color) {
             winIterator++;
           }
 
           if(winIterator === 4) {
-            game.endGame();
+            game.endGame(color);
             return;
           }
         }
       }
     }
-  }
+  },
+  resetBoard: function() {
+    this.grid = []; // remove all the virtual values we were storing in the cells
+    this.cellEls.forEach((item) => item.remove());  // remove all the cell divs from the dom (clean them)
+    this.cellEls = [];  // empty array for new values
+  },
 }
 
 class Player {
   name = '';
   color = '';
-  score = 0;
-  constructor(name, color, score) {
+  stats = {piecesOnBoard: 0, gamesWon: 0,};
+  constructor(name, color, stats) {
     this.name = name;
     this.color = color;
-    this.score = score;
+    this.stats = stats;
   }
 }
 const player1 = new Player();
@@ -120,11 +131,32 @@ player2.color = 'red';
 const game = {
   over: false,
   turn: 0,
-  endGame: function() {
+  renderGameMessage: function(str) {
+    gameMessagesEl.innerHTML = str;
+    console.log(str);
+  },
+  endGame: function(winningColor) {
     this.over = true;
-    console.log('game over');
+
+    if(winningColor === player1.color) {
+      this.renderGameMessage(`Player 1 (${player1.color}) wins!`);
+    } else if(winningColor === player2.color) {
+      this.renderGameMessage(`Player 2 (${player2.color}) wins!`);
+    }
+  },
+  init: function() {
+    game.over = false;
+
+    board.resetBoard();
+    board.drawGrid();  
+
+    game.turn = 1;
+    game.renderGameMessage(`${player1.color}'s turn!`);
   },
 }
 
-board.drawGrid();
-game.turn = 1;
+const gameMessagesEl = document.getElementById('game-messages');
+const resetButtonEl = document.getElementById('reset-button');
+resetButtonEl.addEventListener('click', game.init);
+
+game.init();
