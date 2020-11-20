@@ -68,10 +68,35 @@ const board = {
 
           if(winIterator === 4) {
             game.endGame();
+            return;
           }
         }
 
-        // diagonal logic
+        // diagonal negative logic
+        winIterator = 1;
+        for(let h = 0; h < 3; h++) {
+          if(this.grid[i + (h + 1) + this.cellsX * (h + 1)] === color) {
+            winIterator++;
+          }
+
+          if(winIterator === 4) {
+            game.endGame();
+            return;
+          }
+        }
+
+        // diagonal positive logic
+        // winIterator = 1;
+        // for(let h = 0; h < 3; h++) {
+        //   if(this.grid[i + (this.cellsX * (h + 1)) - (h + 1)] === color) {
+        //     winIterator++;
+        //   }
+
+        //   if(winIterator === 4) {
+        //     game.endGame();
+        //     return;
+        //   }
+        // }
       }
     }
   }
