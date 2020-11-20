@@ -8,10 +8,11 @@ const board = {
     for(let i = 0; i < this.cellsX * this.cellsY; i++) {
       this.grid.push('');
 
-      // html side
+      // DOM side
       const newCellEl = document.createElement('div');
       newCellEl.className = 'cell';
       newCellEl.id = `cell-${i}`;
+      newCellEl.style.backgroundColor = 'white';
       newCellEl.addEventListener('click', (e) => this.clickCell(e.target));
       this.gameBoardEl.appendChild(newCellEl);
       this.cellEls.push(newCellEl);
@@ -23,7 +24,7 @@ const board = {
 
     // placement conditions
     if(this.grid[i] === '') {
-      if(i >= (this.cellsX * this.cellsY - 1) - (this.cellsX + 1) && i < this.cellsX * this.cellsY || this.grid[i + 7] !== '') {
+      if(i > (this.cellsX * this.cellsY - 1) - this.cellsX && i < this.cellsX * this.cellsY || this.grid[i + 7] !== '') {
         if(game.turn === 1) {
           colorToFill = player1.color;
           game.turn = 2;

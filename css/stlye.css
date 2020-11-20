@@ -6,12 +6,15 @@ body {
                       "sidebar-left game sidebar-right"
                       "footer footer footer";
   height: 100vh;
+  background-color: #121212;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 header {
   grid-area: header;
   display: flex;
   justify-content: center;
+  color: white;
 }
 
 #game-board {
@@ -19,7 +22,7 @@ header {
   display: grid;
   grid-template-columns: 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% 14.3%;
   grid-template-rows: 16.7% 16.7% 16.7% 16.7% 16.7% 16.7%;
-  background-color: pink;
+  background-color: #ff7575;
 }
 
 .cell {
