@@ -20,17 +20,26 @@ const board = {
   clickCell: function(clickedCell) {
     let i = this.cellEls.indexOf(clickedCell);
     let colorToFill = '';
-    if(game.turn === 1) { 
-      colorToFill = player1.color;
-    } else if(game.turn === 2) {
-      colorToFill = player2.color;
-    }
 
-    if(i >= (this.cellsX * this.cellsY - 1) - (this.cellsX + 1) && i < this.cellsX * this.cellsY || this.grid[i + 7] === colorToFill) {
-      this.grid[i] = colorToFill; 
-      this.cellEls[i].style.backgroundColor = colorToFill;
+    // placement conditions
+    if(this.grid[i] === '') {
+      if(i >= (this.cellsX * this.cellsY - 1) - (this.cellsX + 1) && i < this.cellsX * this.cellsY || this.grid[i + 7] !== '') {
+        if(game.turn === 1) {
+          colorToFill = player1.color;
+          game.turn = 2;
+        } else if(game.turn === 2) {
+          colorToFill = player2.color;
+          game.turn = 1;
+        }
+
+        this.fillCell(i, colorToFill);
+      }
     }
   },
+  fillCell: function(i, color) {
+    this.grid[i] = color; 
+    this.cellEls[i].style.backgroundColor = color;
+  }
 }
 
 class Player {
