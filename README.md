@@ -12,6 +12,8 @@
   - who's turn it is
   - how many pieces they have on the board
   - current score for the session
+- style the header / title
+- make the board not look so terrible
 - **BONUS** different themes can be set
 ### Mechanics / Behavior
 - Two players, no computer AI
