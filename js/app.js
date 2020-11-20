@@ -74,33 +74,43 @@ const board = {
     for(let y = 0; y < this.cellsY; y++) {
       for(let x = 0; x < this.cellsX; x++) {
         if(this.grid[y][x] === color) {
-          let winningCells = 1;
+          let neighborCellCount = 1;
 
           // horiz logic
-          for(let w = 1; w <= 3; w++) {
-            if(this.grid[y][x + w] === color) {
-              winningCells++;
+          if(x <= (this.cellsX - 1) - 3) {
+            for(let w = 1; w <= 3; w++) {
+              if(this.grid[y][x + w] === color) {
+                neighborCellCount++;
+              }
             }
           }
 
-          if(this.winCondition(winningCells)) {
+          if(this.winCondition(neighborCellCount)) {
             game.endGame(color);
           } else {
-            winningCells = 1;
+            neighborCellCount = 1;
           }
 
           // vert logic
-          // for(let w = 1; w <= 3; w++) {
-          //   if(this.grid[y + w][x] === color) {
-          //     winningCells++;
-          //   }
-          // }
+          if(y <= (this.cellsY - 1) - 3) {
+            for(let w = 1; w <= 3; w++) {
+              if(this.grid[y + w][x] === color) {
+                neighborCellCount++;
+              }
+            }
+  
+            if(this.winCondition(neighborCellCount)) {
+              game.endGame(color);
+            } else {
+              neighborCellCount = 1;
+            }  
+          }
         }
       }
     }
   },
-  winCondition: function(winningCells) {
-    return (winningCells === 4 ? true : false);
+  winCondition: function(neighborCellCount) {
+    return (neighborCellCount === 4 ? true : false);
   },
   resetBoard: function() {
     // remove all the virtual values we were storing in the cells
