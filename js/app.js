@@ -8,7 +8,7 @@ const board = {
     for(let i = 0; i < this.cellsX * this.cellsY; i++) {
       this.grid.push('');
 
-      // DOM side
+      // DOM stuff
       const newCellEl = document.createElement('div');
       newCellEl.className = 'cell';
       newCellEl.id = `cell-${i}`;
@@ -23,7 +23,7 @@ const board = {
     let colorToFill = '';
 
     // placement conditions
-    if(this.grid[i] === '') {
+    if(this.grid[i] === '' && !game.over) {
       if(i > (this.cellsX * this.cellsY - 1) - this.cellsX && i < this.cellsX * this.cellsY || this.grid[i + 7] !== '') {
         if(game.turn === 1) {
           colorToFill = player1.color;
@@ -34,12 +34,46 @@ const board = {
         }
 
         this.fillCell(i, colorToFill);
+        this.checkNeighbors(colorToFill);
       }
     }
   },
   fillCell: function(i, color) {
     this.grid[i] = color; 
     this.cellEls[i].style.backgroundColor = color;
+  },
+  checkNeighbors: function(color) {
+    for(let i = 0; i < this.cellsX * this.cellsY; i++) {
+      if(this.grid[i] === color) {
+        let winIterator = 1; // declare win iterator
+
+        // horiz logic
+        for(let h = 0; h < 3; h++) {
+          if(this.grid[i + (h + 1)] === color) {
+            winIterator++;
+          }
+
+          if(winIterator === 4) {
+            game.endGame();
+            return;
+          }
+        }
+        
+        // vert logic
+        winIterator = 1;  // reset for next logic
+        for(let v = 0; v < 3; v++) {
+          if(this.grid[i + (this.cellsX * (v + 1))] === color) {
+            winIterator++;
+          }
+
+          if(winIterator === 4) {
+            game.endGame();
+          }
+        }
+
+        // diagonal logic
+      }
+    }
   }
 }
 
@@ -59,7 +93,12 @@ const player2 = new Player();
 player2.color = 'red';
 
 const game = {
+  over: false,
   turn: 0,
+  endGame: function() {
+    this.over = true;
+    console.log('game over');
+  },
 }
 
 board.drawGrid();
