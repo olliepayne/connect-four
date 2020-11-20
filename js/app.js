@@ -145,18 +145,18 @@ const game = {
     }
   },
   init: function() {
-    game.over = false;
+    this.over = false;
 
     board.resetBoard();
     board.drawGrid();  
 
-    game.turn = 1;
-    game.renderGameMessage(`${player1.color}'s turn!`);
+    this.turn = 1;
+    this.renderGameMessage(`${player1.color}'s turn!`);
   },
 }
 
 const gameMessagesEl = document.getElementById('game-messages');
 const resetButtonEl = document.getElementById('reset-button');
-resetButtonEl.addEventListener('click', game.init);
+resetButtonEl.addEventListener('click', () => game.init()); // UNDERSTAND THIS EVENT HANDLER CALLBACK, WHY ITS SET THIS WAY
 
 game.init();
