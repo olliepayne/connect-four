@@ -83,14 +83,24 @@ const board = {
             }
           }
 
-          if(winningCells === 4) {
-            console.log('test');
+          if(this.winCondition(winningCells)) {
+            game.endGame(color);
           } else {
             winningCells = 1;
           }
+
+          // vert logic
+          // for(let w = 1; w <= 3; w++) {
+          //   if(this.grid[y + w][x] === color) {
+          //     winningCells++;
+          //   }
+          // }
         }
       }
     }
+  },
+  winCondition: function(winningCells) {
+    return (winningCells === 4 ? true : false);
   },
   resetBoard: function() {
     // remove all the virtual values we were storing in the cells
