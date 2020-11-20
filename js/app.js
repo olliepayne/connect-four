@@ -1,115 +1,106 @@
+// change placement logic
+// fix neighbor logic
+
 const board = {
   cellsX: 7,
   cellsY: 6,
-  grid: [],
+  grid: [], // nested array, setup y then x (access the row w/ the respective y index)
   gameBoardEl: document.getElementById('game-board'),
   cellEls: [],
   drawGrid: function() {
-    for(let i = 0; i < this.cellsX * this.cellsY; i++) {
-      this.grid.push('');
+    let i = 0;
+    for(let y = 0; y < this.cellsY; y++) {
+      let newVirtualRow = [];
+      let newCellElRow = [];
+      for(let x = 0; x < this.cellsX; x++) {
+        newVirtualRow.push('');
 
-      // DOM stuff
-      const newCellEl = document.createElement('div');
-      newCellEl.className = 'cell';
-      newCellEl.id = `cell-${i}`;
+        // DOM stuff
+        const newCellEl = document.createElement('div');
+        newCellEl.className = 'cell';
+        newCellEl.id = `cell-${i}`;
 
-      newCellEl.style.backgroundColor = 'white';
+        newCellEl.style.backgroundColor = 'white';
 
-      newCellEl.addEventListener('click', (e) => this.clickCell(e.target));
+        // event listeners
+        newCellEl.addEventListener('click', (e) => this.clickCell(e.target));
 
-      this.gameBoardEl.appendChild(newCellEl);
+        this.gameBoardEl.appendChild(newCellEl);
 
-      this.cellEls.push(newCellEl);
+        newCellElRow.push(newCellEl);
+
+        i++;
+      }
+      this.grid.push(newVirtualRow);
+      this.cellEls.push(newCellElRow);
     }
   },
   clickCell: function(clickedCell) {
-    let i = this.cellEls.indexOf(clickedCell);
+    // grab the index of the cell we clicked
+    let gridCoords = {x: 0, y: 0};
+    for(let y = 0; y < this.cellsY; y++) {
+      for(let x = 0; x< this.cellsX; x++) {
+        if(this.cellEls[y][x] === clickedCell) {
+          gridCoords.x = x;
+          gridCoords.y = y;
+        }
+      }
+    }
+
     let colorToFill = '';
 
-    // placement conditions
-    if(this.grid[i] === '' && !game.over) {
-      if(i > (this.cellsX * this.cellsY - 1) - this.cellsX && i < this.cellsX * this.cellsY || this.grid[i + 7] !== '') {
+    // check if we can actually fill the cell
+    if(this.grid[gridCoords.y][gridCoords.x] === '') {  // the cell we are clicking is empty
+      if(gridCoords.y === this.cellsY - 1 || this.grid[gridCoords.y + 1][gridCoords.x] !== '') {
+        // only flip the turn if a cell is filled
         if(game.turn === 1) {
           colorToFill = player1.color;
           game.turn = 2;
-          game.renderGameMessage(`${player2.color}'s turn`);
         } else if(game.turn === 2) {
           colorToFill = player2.color;
           game.turn = 1;
-          game.renderGameMessage(`${player1.color}'s turn`);
-        }
+        } 
 
-        this.fillCell(i, colorToFill);
+        this.fillCell(gridCoords, colorToFill);
         this.checkNeighbors(colorToFill);
       }
     }
   },
-  fillCell: function(i, color) {
-    this.grid[i] = color; 
-    this.cellEls[i].style.backgroundColor = color;
+  fillCell: function(gridCoords, color) {
+    this.grid[gridCoords.y][gridCoords.x] = color;
+    this.cellEls[gridCoords.y][gridCoords.x].style.backgroundColor = color;
   },
   checkNeighbors: function(color) {
-    for(let i = 0; i < this.cellsX * this.cellsY; i++) {
-      if(this.grid[i] === color) {
-        let winIterator = 1; // declare win iterator (need = 4 to win -- 4 pieces in any direction)
+    for(let y = 0; y < this.cellsY; y++) {
+      for(let x = 0; x < this.cellsX; x++) {
+        if(this.grid[y][x] === color) {
+          let winningCells = 1;
 
-        // horiz logic
-        for(let h = 0; h < 3; h++) {
-          if(this.grid[i + (h + 1)] === color) {
-            winIterator++;
+          // horiz logic
+          for(let w = 1; w <= 3; w++) {
+            if(this.grid[y][x + w] === color) {
+              winningCells++;
+            }
           }
 
-          if(winIterator === 4) {
-            game.endGame(color);
-            return;
-          }
-        }
-        
-        // vert logic
-        winIterator = 1;  // reset for next logic
-        for(let v = 0; v < 3; v++) {
-          if(this.grid[i + (this.cellsX * (v + 1))] === color) {
-            winIterator++;
-          }
-
-          if(winIterator === 4) {
-            game.endGame(color);
-            return;
-          }
-        }
-
-        // diagonal negative logic
-        winIterator = 1;  // reset for next logic
-        for(let h = 0; h < 3; h++) {
-          if(this.grid[i + (h + 1) + this.cellsX * (h + 1)] === color) {
-            winIterator++;
-          }
-
-          if(winIterator === 4) {
-            game.endGame(color);
-            return;
-          }
-        }
-
-        // diagonal positive logic
-        winIterator = 1;  // reset for next logic
-        for(let h = 0; h < 3; h++) {
-          if(this.grid[i + (this.cellsX * (h + 1)) - (h + 1)] === color) {
-            winIterator++;
-          }
-
-          if(winIterator === 4) {
-            game.endGame(color);
-            return;
+          if(winningCells === 4) {
+            console.log('test');
+          } else {
+            winningCells = 1;
           }
         }
       }
     }
   },
   resetBoard: function() {
-    this.grid = []; // remove all the virtual values we were storing in the cells
-    this.cellEls.forEach((item) => item.remove());  // remove all the cell divs from the dom (clean them)
-    this.cellEls = [];  // empty array for new values
+    // remove all the virtual values we were storing in the cells
+    this.grid = []; 
+
+    // DOM stuff
+    this.cellEls.forEach(function(row) {
+      row.forEach((item) => item.remove());
+    });  
+    this.cellEls = [];
   },
 }
 
@@ -159,4 +150,5 @@ const gameMessagesEl = document.getElementById('game-messages');
 const resetButtonEl = document.getElementById('reset-button');
 resetButtonEl.addEventListener('click', () => game.init()); // UNDERSTAND THIS EVENT HANDLER CALLBACK, WHY ITS SET THIS WAY
 
+// ---init after everything is defined---
 game.init();
