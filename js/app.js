@@ -56,9 +56,11 @@ const board = {
         if(game.turn === 1) {
           colorToFill = player1.color;
           game.turn = 2;
+          game.renderGameMessage(`${player2.color}'s turn.`);
         } else if(game.turn === 2) {
           colorToFill = player2.color;
           game.turn = 1;
+          game.renderGameMessage(`${player1.color}'s turn.`);
         } 
 
         this.fillCell(gridCoords, colorToFill);
@@ -103,7 +105,37 @@ const board = {
               game.endGame(color);
             } else {
               neighborCellCount = 1;
-            }  
+            }
+          }
+
+          // diagonal positive logic
+          if(y <= (this.cellsY - 1) - 3 && x >= 3) {
+            for(let w = 1; w <= 3; w++) {
+              if(this.grid[y + w][x - w] === color) {
+                neighborCellCount++;
+              }
+            }
+
+            if(this.winCondition(neighborCellCount)) {
+              game.endGame(color);
+            } else {
+              neighborCellCount = 1;
+            }
+          }
+          
+          // diagonal negative logic
+          if(y <= (this.cellsY - 1) - 3 && x <= (this.cellsX - 1) - 3) {
+            for(let w = 1; w <= 3; w++) {
+              if(this.grid[y + w][x + w] === color) {
+                neighborCellCount++;
+              }
+            }
+
+            if(this.winCondition(neighborCellCount)) {
+              game.endGame(color);
+            } else {
+              neighborCellCount = 1;
+            }
           }
         }
       }
@@ -144,7 +176,6 @@ const game = {
   turn: 0,
   renderGameMessage: function(str) {
     gameMessagesEl.innerHTML = str;
-    console.log(str);
   },
   endGame: function(winningColor) {
     this.over = true;
