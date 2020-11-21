@@ -1,5 +1,6 @@
-// change placement logic
-// fix neighbor logic
+// tie condition
+// render and add stats
+// themes ?
 
 const board = {
   cellsX: 7,
