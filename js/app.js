@@ -36,35 +36,37 @@ const board = {
     }
   },
   clickCell: function(clickedCell) {
-    // grab the index of the cell we clicked
-    let gridCoords = {x: 0, y: 0};
-    for(let y = 0; y < this.cellsY; y++) {
-      for(let x = 0; x< this.cellsX; x++) {
-        if(this.cellEls[y][x] === clickedCell) {
-          gridCoords.x = x;
-          gridCoords.y = y;
+    if(!game.over) {
+      // grab the index of the cell we clicked
+      let gridCoords = {x: 0, y: 0};
+      for(let y = 0; y < this.cellsY; y++) {
+        for(let x = 0; x< this.cellsX; x++) {
+          if(this.cellEls[y][x] === clickedCell) {
+            gridCoords.x = x;
+            gridCoords.y = y;
+          }
         }
       }
-    }
 
-    let colorToFill = '';
+      let colorToFill = '';
 
-    // check if we can actually fill the cell
-    if(this.grid[gridCoords.y][gridCoords.x] === '') {  // the cell we are clicking is empty
-      if(gridCoords.y === this.cellsY - 1 || this.grid[gridCoords.y + 1][gridCoords.x] !== '') {
-        // only flip the turn if a cell is filled
-        if(game.turn === 1) {
-          colorToFill = player1.color;
-          game.turn = 2;
-          game.renderGameMessage(`${player2.color}'s turn.`);
-        } else if(game.turn === 2) {
-          colorToFill = player2.color;
-          game.turn = 1;
-          game.renderGameMessage(`${player1.color}'s turn.`);
-        } 
+      // check if we can actually fill the cell
+      if(this.grid[gridCoords.y][gridCoords.x] === '') {  // the cell we are clicking is empty
+        if(gridCoords.y === this.cellsY - 1 || this.grid[gridCoords.y + 1][gridCoords.x] !== '') {
+          // only flip the turn if a cell is filled
+          if(game.turn === 1) {
+            colorToFill = player1.color;
+            game.turn = 2;
+            game.renderGameMessage(`${player2.color}'s turn.`);
+          } else if(game.turn === 2) {
+            colorToFill = player2.color;
+            game.turn = 1;
+            game.renderGameMessage(`${player1.color}'s turn.`);
+          } 
 
-        this.fillCell(gridCoords, colorToFill);
-        this.checkNeighbors(colorToFill);
+          this.fillCell(gridCoords, colorToFill);
+          this.checkNeighbors(colorToFill);
+        }
       }
     }
   },
