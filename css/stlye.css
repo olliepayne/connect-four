@@ -26,17 +26,21 @@ h1 {
 
 #game-messages {
   font-size: 20px;
+  font-style: italic;
 }
 
 #game-board {
+  --game-board-color: #94c1ff;
   grid-area: game;
   display: grid;
-  grid-template-columns: 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% 14.3%;
-  grid-template-rows: 16.7% 16.7% 16.7% 16.7% 16.7% 16.7%;
-  background-color: blue;
+  grid-template-columns: repeat(7, 14.3%);
+  grid-template-rows: repeat(6, 16.7%);
+  background-color: var(--game-board-color);
 }
 
 .cell {
+  border: 5px solid;
+  border-color: #7fa6db;
   border-radius: 50%;
 }
 

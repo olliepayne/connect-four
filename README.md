@@ -8,6 +8,7 @@
 - animate end game for visual feedback
 - highlight cell when hovering over
 - browser responsive
+- animate the cells when we reach a win condition ?
 - **BONUS** different themes can be set
 ### Mechanics / Behavior
 - two players, no computer AI

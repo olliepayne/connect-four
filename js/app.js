@@ -25,6 +25,14 @@ const board = {
 
         // event listeners
         newCellEl.addEventListener('click', (e) => this.clickCell(e.target));
+        newCellEl.addEventListener('mouseover', function(e) {
+          if(!game.over) {
+            e.target.style.opacity = 0.8;
+          }
+        });
+        newCellEl.addEventListener('mouseleave', function(e) {
+          e.target.style.opacity = 1;
+        });
 
         this.gameBoardEl.appendChild(newCellEl);
 
