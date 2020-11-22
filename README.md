@@ -4,34 +4,17 @@
 ![alt text](./images/wireframe.png "Title")
 
 ### Visual / Style
-- 7x6 CSS grid for the game 'pieces'
-  - corresponding virtual grid to hold the values
-- Classic connect 4 colors
-- dabble with animations *when playable build exists*
-- display stats for each player
-  - who's turn it is
-  - how many pieces they have on the board
-  - current score for the session
-- style the header / title
-- make the board not look so terrible
+- 7x6 grid
+- animate end game for visual feedback
+- highlight cell when hovering over
+- browser responsive
 - **BONUS** different themes can be set
 ### Mechanics / Behavior
-- Two players, no computer AI
-- receive input from a mouse click as to which column to drop the piece in
-- track a score for the session
-- reset button (calls a reset method)
-- tie condition
-  - grids full, nobody one
-- timer? for 'falling' animation/effect
-- player class (object)
-  - refined way of handling two players
-- game object
-  - should handle the general interactions of the overall game state
-- turn handler object
-  - specific to controlling who gets to play and when 
-- only be able to drop a piece into a cell if there is a piece below it (or nothing at all)
+- two players, no computer AI
+- traditional connect 4 win logic
+- keep score of how many games have been won for each player
 ### Gameplay
-1. player's input their respective names
+1. players choose their colors
 2. a number is rolled to see who goes first
 3. play back and forth until an end game condition is met
    1. whether that be a win or a tie

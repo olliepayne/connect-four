@@ -6,8 +6,8 @@ body {
                       "sidebar-left game sidebar-right"
                       "footer footer footer";
   height: 100vh;
-  background-color: #121212;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: wheat;
 }
 
 header {
@@ -16,11 +16,16 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: black;
 }
 
 h1 {
+  font-size: 40px;
   margin: 0 auto;
+}
+
+#game-messages {
+  font-size: 20px;
 }
 
 #game-board {
