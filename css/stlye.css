@@ -1,3 +1,8 @@
+:root {
+  --game-board-color: #94c1ff;
+  --cell-boarder-color: #7fa6db;
+}
+
 body {
   display: grid;
   grid-template-columns: auto 700px auto;
@@ -29,8 +34,19 @@ h1 {
   font-style: italic;
 }
 
+.sidebar {
+  text-align: center;
+}
+
+#sidebar-left {
+  grid-area: sidebar-left;
+}
+
+#sidebar-right {
+  grid-area: sidebar-right;
+}
+
 #game-board {
-  --game-board-color: #94c1ff;
   grid-area: game;
   display: grid;
   grid-template-columns: repeat(7, 14.3%);
@@ -40,7 +56,7 @@ h1 {
 
 .cell {
   border: 5px solid;
-  border-color: #7fa6db;
+  border-color: var(--cell-boarder-color);
   border-radius: 50%;
 }
 
@@ -48,4 +64,24 @@ h1 {
   grid-area: footer;
   display: flex;
   justify-content: center;
+  margin: 5px auto;
+}
+
+.btn {
+  background-color: white;
+  border: none;
+  border-radius: 10%;
+  color: black;
+  margin: 0 3px;
+  width: 70px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn:active {
+  opacity: 1;
 }
