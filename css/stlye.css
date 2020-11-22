@@ -5,14 +5,14 @@
 
 body {
   display: grid;
-  grid-template-columns: 300px 700px 300px;
-  grid-template-rows: 100px 600px 100px;
+  grid-template-columns: auto 700px auto;
+  grid-template-rows: auto 600px auto;
   grid-template-areas: "header header header"
                       "sidebar-left game sidebar-right"
                       "footer footer footer";
   height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: wheat;
+  background-color: rgb(242, 229, 206);
 }
 
 header {
@@ -35,9 +35,11 @@ h1 {
 }
 
 .sidebar {
-  text-align: center;
+  display: flex;
   margin: 0 30px;
-  background-color: rgb(207, 188, 152);
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
 }
 
 #sidebar-left {

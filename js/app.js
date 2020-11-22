@@ -45,7 +45,7 @@ const board = {
       // grab the index of the cell we clicked
       let gridCoords = {x: 0, y: 0};
       for(let y = 0; y < this.cellsY; y++) {
-        for(let x = 0; x< this.cellsX; x++) {
+        for(let x = 0; x < this.cellsX; x++) {
           if(this.cellEls[y][x] === clickedCell) {
             gridCoords.x = x;
             gridCoords.y = y;
@@ -96,6 +96,7 @@ const board = {
 
           if(this.winCondition(neighborCellCount)) {
             game.endGame(color);
+            return;
           } else {
             neighborCellCount = 1;
           }
@@ -110,6 +111,7 @@ const board = {
   
             if(this.winCondition(neighborCellCount)) {
               game.endGame(color);
+              return;
             } else {
               neighborCellCount = 1;
             }
@@ -125,6 +127,7 @@ const board = {
 
             if(this.winCondition(neighborCellCount)) {
               game.endGame(color);
+              return;
             } else {
               neighborCellCount = 1;
             }
@@ -140,6 +143,7 @@ const board = {
 
             if(this.winCondition(neighborCellCount)) {
               game.endGame(color);
+              return;
             } else {
               neighborCellCount = 1;
             }
@@ -164,19 +168,20 @@ const board = {
 }
 
 class Player {
-  name = '';
   color = '';
   score = 0;
-  constructor(name, color, score) {
+  constructor(color, score) {
     this.name = name;
     this.color = color;
     this.score = score;
   }
 }
 const player1 = new Player();
-player1.color = 'yellow';
+player1.color = 'pink';
+player1.score = 0;
 const player2 = new Player();
 player2.color = 'red';
+player2.score = 0;
 
 const game = {
   over: false,
@@ -188,8 +193,11 @@ const game = {
     this.over = true;
 
     if(winningColor === player1.color) {
+      player1.score++;
+      player1ScoreEl.innerHTML = player1.score;
       this.renderGameMessage(`Player 1 (${player1.color}) wins!`);
     } else if(winningColor === player2.color) {
+      player2.score++;
       this.renderGameMessage(`Player 2 (${player2.color}) wins!`);
     }
   },
@@ -207,6 +215,8 @@ const game = {
 const gameMessagesEl = document.getElementById('game-messages');
 const resetButtonEl = document.getElementById('reset-button');
 resetButtonEl.addEventListener('click', () => game.init()); // UNDERSTAND THIS EVENT HANDLER CALLBACK, WHY ITS SET THIS WAY
+const player1ScoreEl = document.getElementById('player1-score');
+const player2ScoreEl = document.getElementById('player2-score');
 
 // ---init after everything is defined---
 game.init();
