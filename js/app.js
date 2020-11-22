@@ -1,7 +1,3 @@
-// tie condition
-// render and add stats
-// themes ?
-
 const board = {
   cellsX: 7,
   cellsY: 6,
@@ -170,11 +166,11 @@ const board = {
 class Player {
   name = '';
   color = '';
-  stats = {piecesOnBoard: 0, gamesWon: 0,};
-  constructor(name, color, stats) {
+  score = 0;
+  constructor(name, color, score) {
     this.name = name;
     this.color = color;
-    this.stats = stats;
+    this.score = score;
   }
 }
 const player1 = new Player();

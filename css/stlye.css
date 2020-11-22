@@ -5,8 +5,8 @@
 
 body {
   display: grid;
-  grid-template-columns: auto 700px auto;
-  grid-template-rows: auto 600px auto;
+  grid-template-columns: 300px 700px 300px;
+  grid-template-rows: 100px 600px 100px;
   grid-template-areas: "header header header"
                       "sidebar-left game sidebar-right"
                       "footer footer footer";
@@ -36,6 +36,8 @@ h1 {
 
 .sidebar {
   text-align: center;
+  margin: 0 30px;
+  background-color: rgb(207, 188, 152);
 }
 
 #sidebar-left {
@@ -52,6 +54,7 @@ h1 {
   grid-template-columns: repeat(7, 14.3%);
   grid-template-rows: repeat(6, 16.7%);
   background-color: var(--game-board-color);
+  border-radius: 5%;
 }
 
 .cell {

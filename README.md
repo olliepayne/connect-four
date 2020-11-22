@@ -1,5 +1,12 @@
 # connect-four
 
+## TODO
+- add tie condition
+- add color picker
+- render and add score
+- new PLACEMENT logic
+- add win animation
+
 ## Wireframe
 ![alt text](./images/wireframe.png "Title")
 
@@ -8,8 +15,7 @@
 - animate end game for visual feedback
 - highlight cell when hovering over
 - browser responsive
-- animate the cells when we reach a win condition ?
-- **BONUS** different themes can be set
+- animate the cells when we reach a win condition
 ### Mechanics / Behavior
 - two players, no computer AI
 - traditional connect 4 win logic
