@@ -13,7 +13,7 @@
 ## Getting Started
 Classic Connect 4!  
 *No computer AI, alternating turns between players*  
-[Play Here](opconnect4.surge.sh)  
+[Play Here](https://opconnect4.surge.sh)  
 
 ### Next Steps
 - add the ability for the player to choose from a selection of colors
