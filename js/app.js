@@ -240,6 +240,7 @@ const game = {
       this.renderGameMessage(`Player 1 (${player1.color}) wins!`);
     } else if(winningColor === player2.color) {
       player2.score++;
+      player2ScoreEl.innerHTML = player2.score;
       this.renderGameMessage(`Player 2 (${player2.color}) wins!`);
     }
   },
