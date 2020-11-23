@@ -89,6 +89,21 @@ const board = {
   fillCell: function(gridCoords, color) {
     this.grid[gridCoords.y][gridCoords.x] = color;
     this.cellEls[gridCoords.y][gridCoords.x].style.backgroundColor = color;
+
+    if(this.allCellsFilled()) {
+      console.log('test');
+      game.tieGame();
+    }
+  },
+  allCellsFilled: function() {
+    for(let y = 0; y < this.cellsY; y++) {
+      for(let x = 0; x < this.cellsX; x++) {
+        if(this.grid[y][x] === '') {
+          return false;
+        }
+      }
+    }
+    return true;
   },
   checkNeighbors: function(color) {
     for(let y = 0; y < this.cellsY; y++) {
@@ -227,6 +242,10 @@ const game = {
       player2.score++;
       this.renderGameMessage(`Player 2 (${player2.color}) wins!`);
     }
+  },
+  tieGame: function() {
+    this.over = true;
+    this.renderGameMessage(`It's a tie!`);
   },
   init: function() {
     this.over = false;
