@@ -260,7 +260,7 @@ const game = {
 
 const gameMessagesEl = document.getElementById('game-messages');
 const resetButtonEl = document.getElementById('reset-button');
-resetButtonEl.addEventListener('click', () => game.init()); // UNDERSTAND THIS EVENT HANDLER CALLBACK, WHY ITS SET THIS WAY (this keyword troubles)
+resetButtonEl.addEventListener('click', () => game.init());
 const player1ScoreEl = document.getElementById('player1-score');
 const player2ScoreEl = document.getElementById('player2-score');
 

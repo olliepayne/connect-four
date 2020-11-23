@@ -1,8 +1,5 @@
 # connect-four
 
-## TODO
-- render and add score
-
 ## Wireframe
 ![alt text](./images/wireframe.png "Title")
 
@@ -12,7 +9,7 @@
 3. CSS
 
 ## Getting Started
-[Play]()
+[Play Here]()
 
 ### Next Steps
 - add the ability for the player to choose from a selection of colors

@@ -10,7 +10,8 @@ body {
   grid-template-areas: "header header header"
                       "sidebar-left game sidebar-right"
                       "footer footer footer";
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: rgb(242, 229, 206);
 }
@@ -30,15 +31,13 @@ h1 {
 }
 
 #game-messages {
-  font-size: 20px;
+  font-size: 25px;
   font-style: italic;
 }
 
 .sidebar {
-  display: flex;
   margin: 0 30px;
   justify-content: center;
-  align-items: center;
   font-size: 30px;
   flex-wrap: wrap;
 }
@@ -52,7 +51,6 @@ h1 {
 }
 
 .player-score-text {
-  flex-direction: row;
   font-size: 25px;
 }
 
