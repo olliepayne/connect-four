@@ -43,35 +43,46 @@ const board = {
   clickCell: function(clickedCell) {
     if(!game.over) {
       // grab the index of the cell we clicked
-      let gridCoords = {x: 0, y: 0};
+      let clickedCellCoords = {x: 0, y: 0};
       for(let y = 0; y < this.cellsY; y++) {
         for(let x = 0; x < this.cellsX; x++) {
           if(this.cellEls[y][x] === clickedCell) {
-            gridCoords.x = x;
-            gridCoords.y = y;
+            clickedCellCoords.x = x;
+            clickedCellCoords.y = y;
           }
         }
       }
 
       let colorToFill = '';
+      let placementCoords = {x: 0, y: 0};
 
-      // check if we can actually fill the cell
-      if(this.grid[gridCoords.y][gridCoords.x] === '') {  // the cell we are clicking is empty
-        if(gridCoords.y === this.cellsY - 1 || this.grid[gridCoords.y + 1][gridCoords.x] !== '') {
-          // only flip the turn if a cell is filled
-          if(game.turn === 1) {
-            colorToFill = player1.color;
-            game.turn = 2;
-            game.renderGameMessage(`${player2.color}'s turn.`);
-          } else if(game.turn === 2) {
-            colorToFill = player2.color;
-            game.turn = 1;
-            game.renderGameMessage(`${player1.color}'s turn.`);
-          } 
-
-          this.fillCell(gridCoords, colorToFill);
-          this.checkNeighbors(colorToFill);
+      if(this.grid[clickedCellCoords.y][clickedCellCoords.x] === '') {
+        for(let y = clickedCellCoords.y; y < this.cellsY; y++) {
+          if(this.grid[y][clickedCellCoords.x] === '') {
+            if(y !== this.cellsY - 1) {
+              if(this.grid[y + 1][clickedCellCoords.x] !== '') {
+                placementCoords = {x: clickedCellCoords.x, y: y};
+              }
+            } else {
+              placementCoords = {x: clickedCellCoords.x, y: y};
+            }
+          }
         }
+
+        if(game.turn === 1) {
+          colorToFill = player1.color;
+
+          game.turn = 2;
+          game.renderGameMessage(`${player2.color}'s turn`);
+        } else if(game.turn === 2) {
+          colorToFill = player2.color;
+          
+          game.turn = 1;
+          game.renderGameMessage(`${player1.color}'s turn`);
+        }
+
+        this.fillCell(placementCoords, colorToFill);
+        this.checkNeighbors(colorToFill);
       }
     }
   },
