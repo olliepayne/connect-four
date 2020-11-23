@@ -4,7 +4,6 @@
 - add tie condition
 - add color picker
 - render and add score
-- new PLACEMENT logic
 - add win animation
 
 ## Wireframe

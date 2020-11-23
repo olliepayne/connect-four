@@ -1,0 +1,16 @@
+.winning-cell {
+  border: 5px solid;
+  border-color: var(--cell-boarder-color);
+  border-radius: 50%;
+  animation: winning-cell 0.5s ease-in;
+}
+
+@keyframes winning-cell {
+  50% {
+    transform: scale(1.3, 1.3);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}

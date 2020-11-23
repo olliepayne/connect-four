@@ -76,7 +76,7 @@ const board = {
           game.renderGameMessage(`${player2.color}'s turn`);
         } else if(game.turn === 2) {
           colorToFill = player2.color;
-          
+
           game.turn = 1;
           game.renderGameMessage(`${player1.color}'s turn`);
         }
@@ -95,68 +95,81 @@ const board = {
       for(let x = 0; x < this.cellsX; x++) {
         if(this.grid[y][x] === color) {
           let neighborCellCount = 1;
+          let winningCelEls = [];
 
           // horiz logic
           if(x <= (this.cellsX - 1) - 3) {
+            winningCelEls.push(this.cellEls[y][x]);
             for(let w = 1; w <= 3; w++) {
               if(this.grid[y][x + w] === color) {
                 neighborCellCount++;
+                winningCelEls.push(this.cellEls[y][x+w]);
               }
             }
           }
 
           if(this.winCondition(neighborCellCount)) {
-            game.endGame(color);
+            game.endGame(color, winningCelEls);
             return;
           } else {
             neighborCellCount = 1;
+            winningCelEls = [];
           }
 
           // vert logic
           if(y <= (this.cellsY - 1) - 3) {
+            winningCelEls.push(this.cellEls[y][x]);
             for(let w = 1; w <= 3; w++) {
               if(this.grid[y + w][x] === color) {
                 neighborCellCount++;
+                winningCelEls.push(this.cellEls[y + w][x]);
               }
             }
   
             if(this.winCondition(neighborCellCount)) {
-              game.endGame(color);
+              game.endGame(color, winningCelEls);
               return;
             } else {
               neighborCellCount = 1;
+              winningCelEls = [];
             }
           }
 
           // diagonal positive logic
           if(y <= (this.cellsY - 1) - 3 && x >= 3) {
+            winningCelEls.push(this.cellEls[y][x]);
             for(let w = 1; w <= 3; w++) {
               if(this.grid[y + w][x - w] === color) {
                 neighborCellCount++;
+                winningCelEls.push(this.cellEls[y + w][x - w]);
               }
             }
 
             if(this.winCondition(neighborCellCount)) {
-              game.endGame(color);
+              game.endGame(color, winningCelEls);
               return;
             } else {
               neighborCellCount = 1;
+              winningCelEls = [];
             }
           }
           
           // diagonal negative logic
           if(y <= (this.cellsY - 1) - 3 && x <= (this.cellsX - 1) - 3) {
+            winningCelEls.push(this.cellEls[y][x]);
             for(let w = 1; w <= 3; w++) {
               if(this.grid[y + w][x + w] === color) {
                 neighborCellCount++;
+                winningCelEls.push(this.cellEls[y + w][x + w]);
               }
             }
 
             if(this.winCondition(neighborCellCount)) {
-              game.endGame(color);
+              game.endGame(color, winningCelEls);
               return;
             } else {
               neighborCellCount = 1;
+              winningCelEls = [];
             }
           }
         }
@@ -188,7 +201,7 @@ class Player {
   }
 }
 const player1 = new Player();
-player1.color = 'pink';
+player1.color = 'yellow';
 player1.score = 0;
 const player2 = new Player();
 player2.color = 'red';
@@ -200,8 +213,11 @@ const game = {
   renderGameMessage: function(str) {
     gameMessagesEl.innerHTML = str;
   },
-  endGame: function(winningColor) {
+  endGame: function(winningColor, winningCellEls) {
     this.over = true;
+
+    // animate
+    winningCellEls.forEach((item) => item.className = 'winning-cell');
 
     if(winningColor === player1.color) {
       player1.score++;
@@ -225,7 +241,7 @@ const game = {
 
 const gameMessagesEl = document.getElementById('game-messages');
 const resetButtonEl = document.getElementById('reset-button');
-resetButtonEl.addEventListener('click', () => game.init()); // UNDERSTAND THIS EVENT HANDLER CALLBACK, WHY ITS SET THIS WAY
+resetButtonEl.addEventListener('click', () => game.init()); // UNDERSTAND THIS EVENT HANDLER CALLBACK, WHY ITS SET THIS WAY (this keyword troubles)
 const player1ScoreEl = document.getElementById('player1-score');
 const player2ScoreEl = document.getElementById('player2-score');
 
