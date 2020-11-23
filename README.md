@@ -1,7 +1,9 @@
 # connect-four
 
-## Wireframe
-![alt text](./images/wireframe.png "Title")
+## Wireframe & Screenshots
+![alt text](./images/wireframe.png "Wireframe")
+![alt text](./images/screenshot3.png "Game Image")
+![alt text](./images/screenshot2.png "Game Image")
 
 ### Technologies Used
 1. JavaScript
