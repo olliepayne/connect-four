@@ -1,4 +1,4 @@
-# connect-four
+# Connect 4
 
 ## Wireframe & Screenshots
 ![alt text](./images/wireframe.png "Wireframe")
@@ -11,7 +11,9 @@
 3. CSS
 
 ## Getting Started
-[Play Here]()
+Classic Connect 4!  
+*No computer AI, alternating turns between players*  
+[Play Here](opconnect4.surge.sh)  
 
 ### Next Steps
 - add the ability for the player to choose from a selection of colors
