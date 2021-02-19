@@ -4,18 +4,19 @@
 <hr>
 **Known Bugs**
 <br>
-*none
+*none*
 
 ### About
 My first project completed as part of the General Assembly SEI Remote course.
 
 ### Screenshots
-![alt text](./images/wireframe.png "Wireframe")
-<img src="./images/wireframe.png" title="source: imgur.com" />
+<img src="./images/wireframe.png" />
 Wireframe
 
-![alt text](./images/screenshot3.png "Game Image")
-![alt text](./images/screenshot2.png "Game Image")
+<img src="./images/screenshot3.png" />
+caption
+
+<img src="./images/screenshot2.png" />
 
 ### Technologies Used
 * JavaScript
