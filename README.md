@@ -11,8 +11,8 @@ My first project completed as part of the General Assembly SEI Remote course.
 
 ### Screenshots
 ![alt text](./images/wireframe.png "Wireframe")
-<a href="https://imgur.com/wNCAcdK"><img src="./images/wireframe.png" title="source: imgur.com" /></a>
-Route Finder specificty
+<img src="./images/wireframe.png" title="source: imgur.com" />
+Wireframe
 
 ![alt text](./images/screenshot3.png "Game Image")
 ![alt text](./images/screenshot2.png "Game Image")
