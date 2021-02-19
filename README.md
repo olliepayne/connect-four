@@ -4,7 +4,6 @@
 <hr>
 **Known Bugs**
 <br>
-*none*
 
 ### About
 My first project completed as part of the General Assembly SEI Remote course.
@@ -14,9 +13,10 @@ My first project completed as part of the General Assembly SEI Remote course.
 Wireframe
 
 <img src="./images/screenshot3.png" />
-caption
+Game Image 1
 
 <img src="./images/screenshot2.png" />
+Game Image 2
 
 ### Technologies Used
 * JavaScript
@@ -31,24 +31,3 @@ caption
 - add the ability for the player to choose from a selection of colors
 - add multiple board themes to choose from
 - add a falling animation for the pieces when they are dropped
-
-- - - - - -
-
-### Screenshots
-<a href="https://imgur.com/wNCAcdK"><img src="https://i.imgur.com/wNCAcdK.png" title="source: imgur.com" /></a>
-Route Finder specificty
-
-<a href="https://imgur.com/hJNZWZp"><img src="https://i.imgur.com/hJNZWZp.png" title="source: imgur.com" /></a>
-Route Finder displaying all routes
-
-<a href="https://imgur.com/SbBXmQY"><img src="https://i.imgur.com/SbBXmQY.png" title="source: imgur.com" /></a>
-Update Route
-
-<a href="https://imgur.com/XlBrULC"><img src="https://i.imgur.com/XlBrULC.png" title="source: imgur.com" /></a>
-Signup Page
-
-<a href="https://imgur.com/dxNawLk"><img src="https://i.imgur.com/dxNawLk.png" title="source: imgur.com" /></a>
-Route Details
-
-<a href="https://imgur.com/rERctUz"><img src="https://i.imgur.com/rERctUz.png" title="source: imgur.com" /></a>
-User Profile
